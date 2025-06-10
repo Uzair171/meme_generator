@@ -6,7 +6,13 @@ export default function Body() {
         topText: "does not simply",
         bottomText: "Walk into Mordor"
     })
-    
+    function handleTopText(event){
+        const {value} = event.currentTarget
+        Setmeme(prevValue => ({
+            ...prevValue,
+            topText : value
+        }))
+    }
     
     return (
         <main>
@@ -16,6 +22,7 @@ export default function Body() {
                         type="text"
                         placeholder="One does not simply"
                         name="topText"
+                        onChange={handleTopText}
                     />
                 </label>
 
