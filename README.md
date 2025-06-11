@@ -4,7 +4,7 @@ A simple meme generator that fetches a random image from the **100 Memes API** a
 
 ## ✨ Features
 
-- 🖼️ Random meme image from the [100 Memes API](https://api.imgflip.com/get_memes)
+- 🖼️ Random meme image from the [100 Memes API](https://imgflip.com/api)
 - 📝 Customizable top and bottom text
 - ⚡ Easy and fast meme generation
 - 💾 Download or share your meme
