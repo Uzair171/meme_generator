@@ -6,11 +6,30 @@ export default function Body() {
         topText: "does not simply",
         bottomText: "Walk into Mordor"
     })
-    function handleTopText(event){
-        const {value} = event.currentTarget
+
+    const [allmemes, setAllMemes] = React.useState([])
+
+    React.useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMemes(data.data.memes))
+    }, [])
+
+    function handleText(event){
+        const {value , name} = event.currentTarget
         Setmeme(prevValue => ({
             ...prevValue,
-            topText : value
+            [name] : value
+        }))
+    }
+
+
+    function memeHandle(){
+        const randomNumber = Math.floor(Math.random() * allmemes.length)
+        const newimageURL = allmemes[randomNumber].url
+        Setmeme(prevState => ({
+            ...prevState,
+            imageUrl: newimageURL
         }))
     }
     
@@ -22,7 +41,8 @@ export default function Body() {
                         type="text"
                         placeholder="One does not simply"
                         name="topText"
-                        onChange={handleTopText}
+                        onChange={handleText}
+                        value={meme.topText}
                     />
                 </label>
 
@@ -31,9 +51,11 @@ export default function Body() {
                         type="text"
                         placeholder="Walk into Mordor"
                         name="bottomText"
+                        onChange={handleText}
+                        value={meme.bottomText}
                     />
                 </label>
-                <button>Get a new meme image 🖼</button>
+                <button onClick={memeHandle}>Get a new meme image 🖼</button>
             </div>
             <div className="meme">
                 <img src={meme.imageUrl} />
